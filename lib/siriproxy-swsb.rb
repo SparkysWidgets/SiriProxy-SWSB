@@ -43,28 +43,28 @@ listen_for /test smart box/i do
        request_completed #always complete your request! Otherwise the phone will "spin" at the user!
   end
 
- listen_for /Turn on relay a/i do
+ listen_for /Turn on relay *[aA]/i do
      say "turning on relay a!"
       sp = SerialPort.new(@comport, @baudrate, @databits, @stopbits, @parity)
       sp.write "C1H"
    request_completed #always complete your request! Otherwise the phone will "spin" at the user!
   end
 
-  listen_for /Turn on relay b/i do
+  listen_for /Turn on relay *[bB]/i do
      say "turning on relay b!"
       sp = SerialPort.new(@comport, @baudrate, @databits, @stopbits, @parity)
       sp.write "C2H"
    request_completed #always complete your request! Otherwise the phone will "spin" at the user!
   end
 
-  listen_for /Turn off relay a/i do
+  listen_for /Turn off relay *[aA]/i do
      say "turning off relay a!"
       sp = SerialPort.new(@comport, @baudrate, @databits, @stopbits, @parity)
       sp.write "C1L"
    request_completed #always complete your request! Otherwise the phone will "spin" at the user!
   end
 
-  listen_for /Turn off relay b/i do
+  listen_for /Turn off relay *[bB]/i do
      say "turning off relay b!"
       sp = SerialPort.new(@comport, @baudrate, @databits, @stopbits, @parity)
       sp.write "C2L"
