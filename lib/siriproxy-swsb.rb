@@ -17,17 +17,19 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
+
+
 #######
 # This is just the basic gem to interface serial ports, siri, and various hardware interfaces
 # such as relay boards, temp sensors, fans, pumps and many other things!
-#######
 #
+#######
 
 require 'cora'
 require 'siri_objects'
 require 'pp'
 require 'serialport'
-class SiriProxy::Plugin::SWGDO < SiriProxy::Plugin  
+class SiriProxy::Plugin::SWSB < SiriProxy::Plugin  
   def initialize(config)    
     @comport = config["comport"]
     @baudrate = config["baudrate"]
@@ -36,21 +38,36 @@ class SiriProxy::Plugin::SWGDO < SiriProxy::Plugin
     @parity = config["parity"]
   end  
 
-listen_for /test bluetooth/i do
-    say "Sparkys Interface is up and running!"
+listen_for /test smart box/i do
+    say "Sparkys Smart Box is AOK!"
        request_completed #always complete your request! Otherwise the phone will "spin" at the user!
   end
 
- listen_for /open garage door/i do
-    response = ask "Which Door?" #ask the user for something
-      if(response =~ /one/i) #process their response
-       say "opening door 1!"
-      end
-       if(response =~ /two/i) #process their response
-       say "opening door 2!"
-         sp = SerialPort.new(@comport, @baudrate, @databits, @stopbits, @parity)
-	sp.write "C2"
-      end
+ listen_for /Turn on relay one/i do
+     say "turning on relay 1!"
+      sp = SerialPort.new(@comport, @baudrate, @databits, @stopbits, @parity)
+      sp.write "C1"
+   request_completed #always complete your request! Otherwise the phone will "spin" at the user!
+  end
+
+  listen_for /Turn on relay two/i do
+     say "turning on relay 2!"
+      sp = SerialPort.new(@comport, @baudrate, @databits, @stopbits, @parity)
+      sp.write "2"
+   request_completed #always complete your request! Otherwise the phone will "spin" at the user!
+  end
+
+  listen_for /Turn off relay one/i do
+     say "turning off relay 1!"
+      sp = SerialPort.new(@comport, @baudrate, @databits, @stopbits, @parity)
+      sp.write "C1"
+   request_completed #always complete your request! Otherwise the phone will "spin" at the user!
+  end
+
+  listen_for /Turn off relay two/i do
+     say "turning off relay 1!"
+      sp = SerialPort.new(@comport, @baudrate, @databits, @stopbits, @parity)
+      sp.write "C2"
    request_completed #always complete your request! Otherwise the phone will "spin" at the user!
   end
 end
