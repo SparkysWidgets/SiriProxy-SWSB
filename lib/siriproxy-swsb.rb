@@ -43,6 +43,61 @@ listen_for /test smart box/i do
        request_completed #always complete your request! Otherwise the phone will "spin" at the user!
   end
 
+#listen_for(/turn on light.*([0-9]+\s*|one|two|three|four|five|six|seven|eight|nine|ten)/i) { |number| turn_on_light(number) } 
+#listen_for(/turn off light.*([0-9]+\s*|one|two|three|four|five|six|seven|eight|nine|ten)/i) { |number| turn_off_light(number) } 
+listen_for(/turn on all lights/i) { all_lights_on}
+listen_for(/turn off all lights)/i) { all_lights_off} 
 
+#def turn_on_light(number)
+#     sp = SerialPort.new(@comport, @baudrate, @databits, @stopbits, @parity)
+#     $tmp = number
+#   case $tmp
+#    when "one"
+#	say "turning on lab light 1"
+# 	sp.write "C1H"
+#    when "two"
+#	say "turning on lab light 2"
+#	sp.write "C2H"
+#    when "two"
+#	say "turning on lab light 3"
+#	sp.write "C3H"
+#    else
+	#do nothing
+#    end
+#   request_completed #always complete your request! Otherwise the phone will "spin" at the user!
+#  end
+
+#   def turn_off_light(number)
+#     sp = SerialPort.new(@comport, @baudrate, @databits, @stopbits, @parity)
+#     $tmp = number
+#   case $tmp
+#   when "one"
+#	say "turning off lab light 1"
+# 	sp.write "C1L"
+#    when "two"
+#	say "turning off lab light 2"
+#	sp.write "C2L"
+#    when "two"
+#	say "turning off lab light 3"
+#	sp.write "C3L"
+#    else
+	#do nothing
+#    else
+#   request_completed #always complete your request! Otherwise the phone will "spin" at the user!
+#  end
+
+   def all_lights_on
+    sp = SerialPort.new(@comport, @baudrate, @databits, @stopbits, @parity)
+    say "turning on all lab lights"
+    sp.write "CAH"
+   request_completed #always complete your request! Otherwise the phone will "spin" at the user!
+  end
+
+   def all_lights_on
+    sp = SerialPort.new(@comport, @baudrate, @databits, @stopbits, @parity)
+    say "turning off all lab lights"
+    sp.write "CAL"
+   request_completed #always complete your request! Otherwise the phone will "spin" at the user!
+  end
  
 end
