@@ -44,7 +44,7 @@ listen_for /test smart box/i do
   end
 
 listen_for(/turn on light.*([0-9]+\s*|one|two|three|four|five|six|seven|eight|nine|ten)/i) { |number| turn_on_light(number) } 
-#listen_for(/turn off light.*([0-9]+\s*|one|two|three|four|five|six|seven|eight|nine|ten)/i) { |number| turn_off_light(number) } 
+listen_for(/turn off light.*([0-9]+\s*|one|two|three|four|five|six|seven|eight|nine|ten)/i) { |number| turn_off_light(number) } 
 
 listen_for /turn on all lights/i do
   sp = SerialPort.new(@comport, @baudrate, @databits, @stopbits, @parity)
@@ -79,23 +79,23 @@ def turn_on_light(number)
    request_completed #always complete your request! Otherwise the phone will "spin" at the user!
   end
 
-#   def turn_off_light(number)
-#     sp = SerialPort.new(@comport, @baudrate, @databits, @stopbits, @parity)
-#     $tmp = number
-#   case $tmp
-#   when "one"
-#	say "turning off lab light 1"
-# 	sp.write "C1L"
-#    when "two"
-#	say "turning off lab light 2"
-#	sp.write "C2L"
-#    when "two"
-#	say "turning off lab light 3"
-#	sp.write "C3L"
-#    else
+   def turn_off_light(number)
+     sp = SerialPort.new(@comport, @baudrate, @databits, @stopbits, @parity)
+     $tmp = number
+   case $tmp
+   when "one"
+	say "turning off lab light 1"
+ 	sp.write "C1L"
+    when "two"
+	say "turning off lab light 2"
+	sp.write "C2L"
+    when "two"
+	say "turning off lab light 3"
+	sp.write "C3L"
+    else
 	#do nothing
-#    else
-#   request_completed #always complete your request! Otherwise the phone will "spin" at the user!
-#  end
+    else
+   request_completed #always complete your request! Otherwise the phone will "spin" at the user!
+  end
  
 end
