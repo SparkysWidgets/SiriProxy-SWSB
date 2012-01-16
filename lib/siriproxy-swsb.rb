@@ -86,15 +86,15 @@ def turn_on_light(number)
    when "one"
 	say "turning off lab light 1"
  	sp.write "C1L"
-    when "two"
+   when "two"
 	say "turning off lab light 2"
 	sp.write "C2L"
-    when "two"
+   when "two"
 	say "turning off lab light 3"
 	sp.write "C3L"
-    else
+   else
 	#do nothing
-    else
+   end
    request_completed #always complete your request! Otherwise the phone will "spin" at the user!
   end
  
