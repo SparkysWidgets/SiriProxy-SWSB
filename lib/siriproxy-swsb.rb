@@ -70,7 +70,7 @@ def turn_on_light(number)
     when "two"
 	say "turning on lab light 2"
 	sp.write "C2H"
-    when "two"
+    when "three"
 	say "turning on lab light 3"
 	sp.write "C3H"
     else
@@ -89,7 +89,7 @@ def turn_on_light(number)
    when "two"
 	say "turning off lab light 2"
 	sp.write "C2L"
-   when "two"
+   when "three"
 	say "turning off lab light 3"
 	sp.write "C3L"
    else
