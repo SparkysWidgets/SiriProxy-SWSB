@@ -8,7 +8,7 @@ NOTICE: Modifying these options in this file has no effect. You must put them in
 
             - name: 'SWSB'
             git: 'git://github.com/SparkysWidgets/SiriProxy-SWSB.git'
-            comport: '/dev/USB0'
+            comport: '/dev/ttyUSB0'
             baudrate: 9600
             databits: 8
             stopbits: 1
